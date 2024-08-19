@@ -2,7 +2,7 @@ spring:
   profiles:
     active: default
   application:
-    name: lemontree-subject
+    name: subject
   h2:
     console:
       enabled: true

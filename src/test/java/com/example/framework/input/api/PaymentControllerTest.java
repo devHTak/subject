@@ -231,7 +231,7 @@ class PaymentControllerTest {
         List<PayBack> payBacks = List.of(payBack1, payBack2, payBack3);
         payBackRepository.saveAll(payBacks);
 
-        PaymentRequest request = new PaymentRequest(member.getId(), 0);
+        PaymentRequest request = new PaymentRequest(member.getId(), null);
 
         mockMvc.perform(delete("/payments/" + returnPayment.getId())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -258,7 +258,7 @@ class PaymentControllerTest {
         payBackRepository.saveAll(payBacks);
         payBackRepository.saveAll(payBacks);
 
-        PaymentRequest request = new PaymentRequest(member.getId(), 0);
+        PaymentRequest request = new PaymentRequest(member.getId(), null);
 
         mockMvc.perform(delete("/payments/" + returnPayment.getId())
                         .contentType(MediaType.APPLICATION_JSON)

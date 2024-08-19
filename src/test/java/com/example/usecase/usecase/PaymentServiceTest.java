@@ -120,16 +120,21 @@ class PaymentServiceTest {
                 new PayBackDto(1L, PayBackType.PAY_BACK_CANCEL, 10),
                 new PayBackDto(1L, PayBackType.PAY_BACK, 10)
         );
+        PaymentDto returnPaymentDto = new PaymentDto();
+        returnPaymentDto.setPaymentType(PaymentType.PAYMENT);
+        returnPaymentDto.setAmount(1000);
+        returnPaymentDto.setPayBacks(payBacks);
+        returnPaymentDto.setMember(memberDto);
+
         PaymentDto cancelPaymentDto = new PaymentDto();
-        cancelPaymentDto.setAmount(1000);
-        cancelPaymentDto.setPayBacks(payBacks);
-        cancelPaymentDto.setMember(memberDto);
+        cancelPaymentDto.setPaymentType(PaymentType.PAYMENT_CANCEL);
+        cancelPaymentDto.setAmount(0);
 
         when(paymentOutputPort.findByIdWithMemberAndPayBacks(paymentDto.getPaymentId()))
-                .thenReturn(Optional.of(cancelPaymentDto));
-        when(paymentValidator.validateAndCalculateForPayBack(cancelPaymentDto))
+                .thenReturn(Optional.of(returnPaymentDto));
+        when(paymentValidator.validateAndCalculateForPayBack(returnPaymentDto))
                 .thenReturn(10);
-        when(paymentOutputPort.cancel(cancelPaymentDto))
+        when(paymentOutputPort.cancel(returnPaymentDto))
                 .thenReturn(cancelPaymentDto);
 
         // when
@@ -138,7 +143,6 @@ class PaymentServiceTest {
         // then
         assertEquals(PaymentType.PAYMENT_CANCEL, resultDto.getPaymentType());
         assertEquals(cancelPaymentDto.getAmount(), resultDto.getAmount());
-
     }
 
 }

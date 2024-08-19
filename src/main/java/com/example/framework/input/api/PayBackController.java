@@ -58,8 +58,7 @@ public class PayBackController {
         return new PayBackResponse(
                 responseDto.getPayBackId(),
                 responseDto.getPayBackType().name(),
-                responseDto.getPayBackAmount(),
-                responseDto.getPayBackAt()
+                responseDto.getPayBackAmount()
         );
     }
 
