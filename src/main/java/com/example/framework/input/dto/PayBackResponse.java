@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public record PayBackResponse(
         Long payBackId,
         String payBackType,
-        Integer payBackAmount,
-        LocalDateTime payBackAt
+        Integer payBackAmount
 ) {
 }
