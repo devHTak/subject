@@ -66,7 +66,7 @@
           |payBackRequestType|String|페이백 계산 타입|
     - 응답
         - |Name|Type|Description|
-                  |---|---|---|
+          |---|---|---|
           |status|Number|응답코드|
           |message|String|응답메세지|
           |body|Data|응답데이터|
